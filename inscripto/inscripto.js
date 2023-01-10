@@ -1,6 +1,6 @@
 // const cards = require('cards')
 const game = {
-    baseLevels: [[0, 'squirrel', 1, 0, 0], [1, 'wolf', 3, 2, 2], [2, 'shit', 0, 0, 0], [3, 'mantis-god', 6, 4, 1]],
+    baseLevels: [[0, 'squirrel', 1, 0, 0], [1, 'wolf', 3, 2, 2], [2, 'shit', 2, 0, 0], [3, 'mantis-god', 6, 4, 1]],
     balance: [1, 1, 1, 1, 1],
     cardPicked: false,
     cardPlayed: false,
