@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tic Tac Toe</title>
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="winner"></div>
+
+    <div class="playerX">
+        <p class="jogador">Player X</p>
+        <div class="status statusX">
+            <div class="pontos">Pontos: 100</div>
+            <div class="vitorias">Vitorias: 5</div>
+            <div class="empates">Empates: 2</div>
+            <div class="derrotas">Derrotas: 4</div>
+        </div>
+    </div>
+    <div class="playerO">
+        <p class="jogador">Player O</p>
+        <div class="status statusO">
+            <div class="pontos">Pontos: 100</div>
+            <div class="vitorias">Vitorias: 5</div>
+            <div class="empates">Empates: 2</div>
+            <div class="derrotas">Derrotas: 4</div>
+        </div>
+    </div>
+
+    <div class="background">
+        <div class='game'>
+            <div class="lineVert1 lineV line"></div>
+            <div class="lineVert2 lineV line"></div>
+            <div class="lineVert3 lineV line"></div>
+
+            <div class="lineHor1 lineH line"></div>
+            <div class="lineHor2 lineH line"></div>
+            <div class="lineHor3 lineH line"></div>
+
+            <div class="diag1 lineD line"></div>
+            <div class="diag2 lineD line"></div>
+
+            <div class="blocks index00" onclick="ticTacToe.makePlay(0, 0)"></div>
+            <div class="blocks index01" onclick="ticTacToe.makePlay(0, 1)"></div>
+            <div class="blocks index02" onclick="ticTacToe.makePlay(0, 2)"></div>
+            <div class="blocks index10" onclick="ticTacToe.makePlay(1, 0)"></div>
+            <div class="blocks index11" onclick="ticTacToe.makePlay(1, 1)"></div>
+            <div class="blocks index12" onclick="ticTacToe.makePlay(1, 2)"></div>
+            <div class="blocks index20" onclick="ticTacToe.makePlay(2, 0)"></div>
+            <div class="blocks index21" onclick="ticTacToe.makePlay(2, 1)"></div>
+            <div class="blocks index22" onclick="ticTacToe.makePlay(2, 2)"></div>
+        </div>
+    </div>
+
+    <div class="restart" onclick="ticTacToe.reset()">Resetar Tabuleiro</div>
+
+    <script src="jogo_da_velha.js"></script>
+    <script>
+        ticTacToe.printStatus()
+    </script>
+
+</body>
+</html> 

@@ -1,0 +1,187 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Oswald', sans-serif;
+  margin: 0;
+}
+
+body {
+  background-color: rgb(29, 27, 27);
+}
+
+.jogador {
+  text-align: center;
+  color: white;
+  font-size: 50px;
+}
+
+.playerO, .playerX {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  height: 600px;
+  width: 300px;
+  opacity: 75%;
+  border-radius: 30px;
+  padding: 10px;
+}
+
+.playerX {
+  background-color: #8c43b6;
+  margin-left: 50px;
+}
+
+.playerO {
+  background-color: #7b0dbb;
+  left: calc(100% - 350px);
+}
+
+.status {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  border-radius: 30px;
+  opacity: 100%;
+  background-color: hsl(0, 0%, 100%, .3);
+  margin-top: 15px;
+
+}
+
+.status div {
+  flex-grow: 1;
+  padding: 15px;
+  font-size: 30px;
+  margin-top: 25px;
+  text-align: center;
+  color: white;
+}
+
+.background {
+  display: flex;
+  width: 530px;
+  height: 530px;
+  background-color: #7b0dbb;
+  margin-left: calc(50% - 265px);
+  margin-top: 50px;
+
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 20px;
+}
+
+.game {
+  display: flex;
+  width: 490px;
+  height: 490px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.blocks {
+  width: 160px;
+  height: 160px;
+  padding: 20px;
+  font-size: 80px;
+  text-align: center;
+  background-color: #8c43b6;
+  cursor: pointer;
+  user-select: none;
+}
+
+.blocks:hover {
+  background-color: #9054b3;
+}
+
+.lineH {
+  display: none;
+  position: absolute;
+  background-color: white;
+  width: 610px;
+  height: 5px;
+  left: calc(50% - 305px);
+}
+
+.lineHor1 {
+  margin-top: 80px;
+}
+
+.lineHor2 {
+  margin-top: 242px;
+}
+
+.lineHor3 {
+  margin-top: 405px;
+}
+
+.lineV {
+  display: none;
+  position: absolute;
+  background-color: white;
+  width: 5px;
+  height: 610px;
+  top: 160px;
+}
+
+.lineVert1 {
+  margin-left: 78px;
+}
+
+.lineVert2 {
+  margin-left: 244px;
+}
+
+.lineVert3 {
+  margin-left: 410px;
+}
+
+.lineD {
+  display: none;
+  position: absolute;
+  background-color: white;
+  width: 5px;
+  height: 880px;
+  margin-left: 228px;
+}
+
+.diag1 {
+  top: 35px;
+  transform: rotate(45deg);
+}
+
+.diag2 {
+  top: 8px;
+  transform: rotate(-45deg);
+}
+
+.winner{
+  text-align: center;
+  font-size: 30px;
+  height: 50px;
+  color: white;
+  margin-top: 100px;
+}
+
+.restart {
+  color: rgb(94, 10, 116);
+  display: block;
+  position: relative;
+  text-align: center;
+  margin-top: 60px;
+  font-size: 40px;
+  width: 300px;
+  left: calc(50% - 150px);
+  background-color: white;
+  border-radius: 100px;
+  padding: 10px 20px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.restart:hover {
+  background-color: #c9c9c9;
+}
+
+@media (max-width: 1236px) {
+  .playerO, .playerX {
+    display: none;
+  }
+}
