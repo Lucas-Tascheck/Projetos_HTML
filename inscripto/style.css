@@ -1,15 +1,40 @@
 body {
     background-color: black;
+    font-family: 'Oswald', sans-serif;
 }
 
 .game {
     display: flex;
     position: relative;
-    width: 1440px;
+    width: 1700px;
     height: 810px;
     background-color: chocolate;
-    margin-left: calc(98% - 1440px);
+    margin-left: calc(85% - 1440px);
     margin-top: 25px;
+}
+
+.sleep {
+    display: flex;
+    position: absolute;
+    height: 256px;
+    width: 350px;
+    margin: 15px 15px;
+    align-content: space-around;
+}
+
+.sleep .slotSquirrel, .sleep .slotNewCards {
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.sleep .card-background:hover{
+    width: 153px;
+    height: 272px;
+}
+
+.squirrelIcon, .clawIcon {
+    top: calc(50% - 32px);
+    margin-left: calc(20% - 32px);
 }
 
 
@@ -21,32 +46,55 @@ body {
     background-color: #f3c956;
     font-size: 40px;
     text-align: center;
+    cursor: pointer;
+}
+
+.redSelection {
+    border: solid 5px #ff2121;
+    margin-bottom: 25px;
+}
+
+.hand0 {
+    border: solid 5px #ff2121;
 }
 
 .life {
-    border: solid black;
+    position: relative;
     align-self: flex-end;
+    margin-right: 5px;
     flex-grow: 1;
     order: 2;
-    background-color: red;
 }
 
+.heart {
+    left: calc(100% - 50px);
+    top: calc(100% - 50px);
+    opacity: 75%;
+}
+
+.claw {
+    transform: rotate(15deg);
+    top: calc(100% - 55px);
+    opacity: 50%;
+}
+
+
 .attack {
-    border: solid black;
+    position: relative;
     flex-grow: 1;
     order: 0;
     align-self: flex-end;
-    background-color: blue;
 }
 
 .cost {
     position: relative;
-    border: solid black;
     flex-grow: 1;
     order: 1;
     align-self: flex-start;
     left: 48px;
-    background-color: gold;
+    color: gold;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #000;
 }
 
 .grid {
@@ -59,9 +107,70 @@ body {
     margin-left: calc(95% - 618px);
 }
 
+.passTurn {
+    position: absolute;
+    display: block;
+    background-color: gold;
+    font-size: 40px;
+    padding: 20px;
+    margin-left: 35%;
+    margin-top: 20%;
+    border-radius: 35px;
+    cursor: pointer;
+}
+
+.passTurn:hover {
+    background-color: #fcdf3d;
+}
+
 .slot {
     border: solid black;
     width: 144px;
     height: 256px;
     margin-left: 4px;
+}
+
+.hand {
+    display: flex;
+    position: absolute;
+    width: 950px;
+    height: 350px;
+    align-items: flex-end;
+    top: calc(100% - 370px);
+    left: 15px;
+    /* border: solid red; */
+}
+
+.hand .slot {
+    position: relative;
+    border: 0;
+    margin-left: 10px;
+    /* border: solid red; */
+}
+
+.hand .slot:hover {
+    margin-bottom: 25px;
+}
+
+.selectSlot {
+    cursor: pointer;
+    animation: selectionAnimation 2000ms infinite;
+}
+
+@keyframes selectionAnimation {
+    0% {
+        border: solid black;
+    }
+
+    25% {
+        border: solid red;
+    }
+
+    75% {
+        border: solid  red;
+    }
+
+    100% {
+        border: solid black;
+    }
 }
