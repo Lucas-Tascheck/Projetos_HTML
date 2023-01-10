@@ -15,17 +15,32 @@
 
         <div class="sleep">
             <div class="squirrels">
-                <div class="slot slotSquirrel">
-                    <img class="card-background" src="./img/carta.jpg" width="144px" height="256px" style="position: absolute;" alt="">
-                    <!-- <img class="squirrelIcon" src="./img/squirrel.png" style="position: absolute;" alt=""> -->
+                <div class="slot slotSquirrel" onclick="game.pickSquirrel()">
+                    <div class="card"><img class="card-background" src="./img/carta.jpg" width="144px" height="256px" style="position: absolute;" alt="">
+                        <img class="squirrelIcon" src="./img/squirrel.png" style="position: absolute;" alt="">
+                    </div>
                 </div>
             </div>
             <div class="newCards">
                 <div class="slot slotNewCards" onclick="game.pickNewCard()">
-                    <img class="card-background" src="./img/carta.jpg" width="144px" height="256px" style="position: absolute;" alt="">
-                    <!-- <img class="clawIcon" src="./img/claw.png" width="64px" height="64px" style="position: absolute; transform: rotate(12deg);" alt=""> -->
+                    <div class="card"><img class="card-background" src="./img/carta.jpg" width="144px" height="256px" style="position: absolute;" alt="">
+                        <img class="clawIcon" src="./img/claw.png" width="64px" height="64px" style="position: absolute; transform: rotate(12deg);" alt="">
+                    </div>
                 </div>
             </div>
+        </div>
+
+        <div class="balance">
+            <div class="weigth0"></div>
+            <div class="weigth1"></div>
+            <div class="weigth2"></div>
+            <div class="weigth3"></div>
+            <div class="weigth4"></div>
+            <div class="weigth5"></div>
+            <div class="weigth6"></div>
+            <div class="weigth7"></div>
+            <div class="weigth8"></div>
+            <div class="weigth9"></div>
         </div>
 
         <div class="grid">
@@ -33,10 +48,10 @@
             <div class="slot slot21 next-move"></div>
             <div class="slot slot22 next-move"></div>
             <div class="slot slot23 next-move"></div>
-            <div class="slot slot10 attack-row" onclick="game.putCard(game.baseLevels[1], 1, 0)"></div>
-            <div class="slot slot11 attack-row" onclick="game.putCard(game.baseLevels[1], 1, 1)"></div>
-            <div class="slot slot12 attack-row" onclick="game.putCard(game.baseLevels[1], 1, 2)"></div>
-            <div class="slot slot13 attack-row" onclick="game.putCard(game.baseLevels[1], 1, 3)"></div>
+            <div class="slot slot10 attack-row" onclick="game.putCard(game.temp[0], 1, 0)"></div>
+            <div class="slot slot11 attack-row" onclick="game.putCard(game.temp[1], 1, 1)"></div>
+            <div class="slot slot12 attack-row" onclick="game.putCard(game.temp[2], 1, 2)"></div>
+            <div class="slot slot13 attack-row" onclick="game.putCard(game.temp[3], 1, 3)"></div>
             <div class="slot slot00 player-row" onclick="game.makePlay(0)"></div>
             <div class="slot slot01 player-row" onclick="game.makePlay(1)"></div>
             <div class="slot slot02 player-row" onclick="game.makePlay(2)"></div>
@@ -59,5 +74,6 @@
 <script src="./inscripto.js"></script>
 <script>
     game.init()
+    game.initEnemy()
 </script>
 </html>

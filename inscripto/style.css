@@ -13,6 +13,24 @@ body {
     margin-top: 25px;
 }
 
+.balance{
+    display: flex;
+    position: absolute;
+    height: 50px;
+    width: 580px;
+    border: solid 2px black;
+    margin: 6% 22%;
+}
+
+.balance div {
+    border: solid 2px black;
+    flex-grow: 1;
+}
+
+.weigth-color {
+    background-color: gold;
+}
+
 .sleep {
     display: flex;
     position: absolute;
@@ -22,14 +40,25 @@ body {
     align-content: space-around;
 }
 
-.sleep .slotSquirrel, .sleep .slotNewCards {
-    margin-left: 20px;
-    cursor: pointer;
+.squirrelIcon, .clawIcon{
+    left: 30%;
 }
 
-.sleep .card-background:hover{
-    width: 153px;
-    height: 272px;
+.squirrels .slot, .newCards .slot {
+    margin-left: 20px;
+    border: none;
+}
+
+.sleep .card {
+    border: solid black;
+}
+
+.sleep .slot{
+    border: none;
+}
+
+.sleep .card:hover{
+    border: solid red;
 }
 
 .squirrelIcon, .clawIcon {
@@ -157,6 +186,14 @@ body {
     animation: selectionAnimation 2000ms infinite;
 }
 
+.attackAnime {
+    animation: attackAnimation 500ms;
+}
+
+.attackAnimeEnemy {
+    animation: attackAnimationEnemy 500ms;
+}
+
 @keyframes selectionAnimation {
     0% {
         border: solid black;
@@ -172,5 +209,49 @@ body {
 
     100% {
         border: solid black;
+    }
+}
+
+@keyframes attackAnimation {
+    0% {
+        margin-top: 0;
+    }
+
+    25% {
+        margin-top: -20%;
+    }
+
+    50% {
+        margin-top: -15%;
+    }
+
+    75% {
+        margin-top: 10%;
+    }
+
+    100%{
+        margin-top: 0;
+    }
+}
+
+@keyframes attackAnimationEnemy {
+    0% {
+        margin-top: 0;
+    }
+
+    25% {
+        margin-top: 20%;
+    }
+
+    50% {
+        margin-top: 15%;
+    }
+
+    75% {
+        margin-top: -10%;
+    }
+
+    100%{
+        margin-top: 0;
     }
 }
