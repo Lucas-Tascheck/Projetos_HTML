@@ -1,0 +1,67 @@
+body {
+    background-color: black;
+}
+
+.game {
+    display: flex;
+    position: relative;
+    width: 1440px;
+    height: 810px;
+    background-color: chocolate;
+    margin-left: calc(98% - 1440px);
+    margin-top: 25px;
+}
+
+
+.card {
+    position: absolute;
+    display: flex;
+    width: 144px;
+    height: 256px;
+    background-color: #f3c956;
+    font-size: 40px;
+    text-align: center;
+}
+
+.life {
+    border: solid black;
+    align-self: flex-end;
+    flex-grow: 1;
+    order: 2;
+    background-color: red;
+}
+
+.attack {
+    border: solid black;
+    flex-grow: 1;
+    order: 0;
+    align-self: flex-end;
+    background-color: blue;
+}
+
+.cost {
+    position: relative;
+    border: solid black;
+    flex-grow: 1;
+    order: 1;
+    align-self: flex-start;
+    left: 48px;
+    background-color: gold;
+}
+
+.grid {
+    display: flex;
+    position: absolute;
+    width: 618px;
+    height: 810px;
+    flex-wrap: wrap;
+    align-content: space-between;
+    margin-left: calc(95% - 618px);
+}
+
+.slot {
+    border: solid black;
+    width: 144px;
+    height: 256px;
+    margin-left: 4px;
+}
