@@ -182,7 +182,7 @@ const game = {
 
 
     passTurn: function(){
-        if(this.isVictory() != 0 || this.cardPicked == false){return}
+        if(this.isGameEnd == true || this.cardPicked == false){return}
         const attackDamage = 0
         for(let i = 0; i < 4; i++){
             if(this.board[1][i] != -1 && this.board[0][i] != -1 && this.board[0][i].attack != 0){
@@ -228,13 +228,14 @@ const game = {
                     if(this.isVictory() != 0){return}
                 }
             }
-            this.cardPicked = false
+            
         }, 2000)
         if(this.isVictory() != 0){return}
         this.nextRow()
         setTimeout(()=>{
             this.fillBackline()
         }, 1800)
+        this.cardPicked = false
     },
 
     clearBalance: function(){
