@@ -10,6 +10,7 @@
 </head>
 <body>
 
+
     <div class="game">
         <img src="./img/table.jpg" width="1700px" height="810px" alt="">
 
@@ -48,10 +49,10 @@
             <div class="slot slot21 next-move"></div>
             <div class="slot slot22 next-move"></div>
             <div class="slot slot23 next-move"></div>
-            <div class="slot slot10 attack-row" onclick="game.putCard(game.temp[0], 1, 0)"></div>
-            <div class="slot slot11 attack-row" onclick="game.putCard(game.temp[1], 1, 1)"></div>
-            <div class="slot slot12 attack-row" onclick="game.putCard(game.temp[2], 1, 2)"></div>
-            <div class="slot slot13 attack-row" onclick="game.putCard(game.temp[3], 1, 3)"></div>
+            <div class="slot slot10 attack-row"></div>
+            <div class="slot slot11 attack-row"></div>
+            <div class="slot slot12 attack-row"></div>
+            <div class="slot slot13 attack-row"></div>
             <div class="slot slot00 player-row" onclick="game.makePlay(0)"></div>
             <div class="slot slot01 player-row" onclick="game.makePlay(1)"></div>
             <div class="slot slot02 player-row" onclick="game.makePlay(2)"></div>
@@ -67,6 +68,13 @@
             <div class="hand3 slot" onclick="game.selectCard(3)"></div>
             <div class="hand4 slot" onclick="game.selectCard(4)"></div>
             <div class="hand5 slot" onclick="game.selectCard(5)"></div>
+        </div>
+    </div>
+
+    <div class="endGame">
+        <p></p>
+        <div class="endButton">
+            <div class="restartButton" onclick="game.restartGame()"></div>
         </div>
     </div>
 

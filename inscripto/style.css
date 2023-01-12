@@ -13,6 +13,46 @@ body {
     margin-top: 25px;
 }
 
+.endGame {
+    display: none;
+    position: absolute;
+    flex-direction: column;
+    width: 350px;
+    height: 500px;
+    background-color: #0f0f0f;
+    top: calc(50% - 250px);
+    margin-left: calc(50% - 175px);
+    border-radius: 25px;
+    opacity: 100%;
+}
+
+.endGame p {
+    color: white;
+    margin: 0;
+    font-size: 60px;
+    text-align: center;
+}
+
+.endGame .endButton {
+    flex-grow: 1;
+    padding: 15px;
+}
+
+.endGame .restartButton {
+    border-radius: 50px;
+    background-color: gold;
+    color: black;
+    font-size: 40px;
+    text-align: center;
+    padding: 20px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.endGame .restartButton:hover {
+    background-color: #ffe346;
+}
+
 .balance{
     display: flex;
     position: absolute;
@@ -76,6 +116,7 @@ body {
     font-size: 40px;
     text-align: center;
     cursor: pointer;
+    user-select: none;
 }
 
 .redSelection {

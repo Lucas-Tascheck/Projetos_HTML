@@ -1,9 +1,13 @@
 // const cards = require('cards')
 const game = {
-    baseLevels: [[0, 'squirrel', 1, 0, 0], [1, 'wolf', 3, 2, 2], [2, 'shit', 2, 0, 0], [3, 'mantis-god', 6, 4, 1]],
+    // id | Name | Life | Attack | Cost 
+    baseLevels: [[0, 'Squirrel', 1, 0, 0], [1, 'Wolf', 3, 2, 2], [2, 'Sapo', 2, 1, 1], [3, 'Mantis-god', 6, 4, 1]],
+    initialDeck: [0, 1, 2],
     balance: [1, 1, 1, 1, 1],
+    isGameEnd: false,
     cardPicked: false,
     cardPlayed: false,
+    current_level: 0,
 
     Card: function(elemen){
         this.id = elemen[0],
@@ -13,9 +17,10 @@ const game = {
         this.cost = elemen[4]
     },
 
-    levels: {
-        lev_1: [[0, -1, -1, 1], [2, 2, -1, 1]]
-    },
+    levels: [
+        [0, 1, 2, 3, 1],
+        [[]]
+    ],
 
     deck: [],
     hand: [0, 0, 0, 0, 0, 0],
@@ -38,6 +43,7 @@ const game = {
     },
 
     putCardOnHand: function(carta, position){
+        this.hand[position] = carta
         document.querySelector(`.hand${position}`).innerHTML = `<div class="card">
                                                                     <img class="card-background" src="./img/carta.jpg" width="144px" height="256px" style="position: absolute;" alt="">
                                                                     <img class="heart" src="./img/life.png" width="50px" height="50px" style="position: absolute;" alt="">
@@ -65,7 +71,7 @@ const game = {
     },
 
     init: function(){
-        for(let i = 0; i < this.baseLevels.length; i++){
+        for(let i = 1; i < this.baseLevels.length; i++){
             const card = new this.Card(this.baseLevels[i])
             this.sleep.push(card)
         }
@@ -74,12 +80,12 @@ const game = {
             document.querySelector(`.balance .weigth${i}`).classList.add('weigth-color')
         }
 
-        for(let i = 0; i < 4; i++){
-            if(this.levels.lev_1[0][i] != -1){
-                const carta = new this.Card(this.baseLevels[this.levels.lev_1[0][i]])
-                this.putCard(carta, 2, i)
-            }              
+        for(let i = 0; i < this.initialDeck.length; i++){
+            const carta = new this.Card(this.baseLevels[this.initialDeck[i]])
+            this.putCardOnHand(carta, i)
         }
+
+        this.fillBackline()
     },
 
     initEnemy: function(){
@@ -97,6 +103,7 @@ const game = {
     },
 
     pickNewCard: function(){
+        if(this.cardPicked == true || this.isGameEnd == true){return}
         nearPos = this.nextZero(this.hand)
         if(nearPos != -1 && this.sleep.length > 0){
             const index = Math.floor(Math.random() * this.sleep.length)
@@ -109,6 +116,7 @@ const game = {
     },
 
     pickSquirrel: function(){
+        if(this.cardPicked == true || this.isGameEnd == true){return}
         nearPos = this.nextZero(this.hand)
         if(nearPos != -1){
             const carta = new this.Card(this.baseLevels[0])
@@ -120,6 +128,7 @@ const game = {
     },
 
     selectCard: function(handPosition){
+        if(this.hand[handPosition] == 0 || this.isGameEnd == true || this.cardPicked == false){return}
         if(this.cardSelected != -1){
             document.querySelector(`.hand .hand${this.cardSelected}`).style.border = 'none'
         }
@@ -131,7 +140,7 @@ const game = {
     },
 
     makePlay: function(index){
-        if(this.board[0][index] == -1 && this.isVictory() == 0){
+        if(this.board[0][index] == -1 && this.isGameEnd == false){
             const elem = this.hand[this.cardSelected]
 
             this.putCard(elem, 0, index)
@@ -185,12 +194,13 @@ const game = {
             if(this.board[1][i] == -1 && this.board[0][i] != -1 && this.board[0][i].attack != 0){
                 this.attackAnimation(i)
                 this.addBalance(this.board[0][i].attack)
+                if(this.isVictory() != 0){return}
             }
         }
         if(this.isVictory() != 0){return}
         setTimeout(()=>{
             for(let i = 0; i < 4; i++){
-                if(this.board[1][i] != -1 && this.board[0][i] != -1 && his.board[1][i].attack != 0){
+                if(this.board[1][i] != -1 && this.board[0][i] != -1 && this.board[1][i].attack != 0){
                     this.board[0][i].life -= this.board[1][i].attack
                     this.attackAnimationEnemy(i)
                     if(this.board[0][i].life <= 0){
@@ -207,11 +217,16 @@ const game = {
                 if(this.board[0][i] == -1 && this.board[1][i] != -1 && this.board[1][i].attack != 0){
                     this.attackAnimationEnemy(i)
                     this.removeBalance(this.board[1][i].attack)
+                    if(this.isVictory() != 0){return}
                 }
             }
             this.cardPicked = false
         }, 2000)
         if(this.isVictory() != 0){return}
+        this.nextRow()
+        setTimeout(()=>{
+            this.fillBackline()
+        }, 1800)
     },
 
     clearBalance: function(){
@@ -254,13 +269,96 @@ const game = {
 
     isVictory: function(){
         if(this.balance.length == 0){
-            console.log('DERROTA!')
+            this.isGameEnd = true
+            const endMenu = document.querySelector('.endGame')
+            document.querySelector('.game').style.opacity = '50%'
+            endMenu.style.display = 'flex'
+            endMenu.querySelector('p').innerHTML = 'Derrota!'
+            endMenu.querySelector('.restartButton').innerHTML = 'Restart Game'
             return -1
         }
         if(this.balance.length == 10){
-            console.log('VITORIA!')
+            this.isGameEnd = true
+            const endMenu = document.querySelector('.endGame')
+            document.querySelector('.game').style.opacity = '50%'
+            endMenu.style.display = 'flex'
+            endMenu.querySelector('p').innerHTML = 'Vitoria!'
+            endMenu.querySelector('.restartButton').innerHTML = 'Restart Game'
             return 1
         }
         return 0
+    },
+
+    possibleSlotsBackline: function(){
+        const cont = []
+        for(let i = 0; i < 4; i++){
+            if(this.board[2][i] == -1){
+                cont.push(i)
+            }
+        }
+        return cont
+    },
+
+    fillBackline: function(){
+        const level_cards = []
+        const freeSlots = this.possibleSlotsBackline()
+        this.levels[this.current_level].forEach(elem => {
+            level_cards.push(elem)
+        })
+        if(this.levels[this.current_level].length == 0 || freeSlots.length == 0){return}
+        const howManyCards = Math.floor(Math.random() * (freeSlots.length - 1) + 1)
+        let cardsToPlay = []
+        
+        for(let i = 0; i < howManyCards; i++){
+            const card = new this.Card(this.baseLevels[level_cards.pop()])
+            cardsToPlay.push(card)
+        }
+        console.log(cardsToPlay)
+        for(let i = 0; i < howManyCards; i++){
+            if(this.board[2][i] == -1){
+                // let element = freeSlots[Math.floor(Math.random() * freeSlots.length)]
+                this.putCard(cardsToPlay.pop(), 2, freeSlots.splice(Math.floor(Math.random() * freeSlots.length), 1))
+
+            }
+        }
+    },
+
+    nextRow: function(){
+        setTimeout(() => {
+            for(let i = 0; i < 4; i++){
+                if(this.board[1][i] == -1 && this.board[2][i] != -1){
+                    this.board[1][i] = this.board[2][i]
+                    this.board[2][i] = -1
+                    document.querySelector(`.slot${2}${i}`).innerHTML = ''
+                    this.putCard(this.board[1][i], 1, i)
+                }
+            }
+        }, 1500)
+    },
+
+    restartGame: function(){
+        this.isGameEnd = false
+        document.querySelector('.game').style.opacity = '100%'
+        document.querySelector('.endGame').style.display = 'none'
+
+        for(let i = 0; i < 3; i++){
+            for(let j = 0; j < 4; j++){
+                this.board[i][j] = -1
+                document.querySelector(`.slot${i}${j}`).innerHTML = ''
+            }
+        }
+        this.cardPicked = false
+        this.cardPlayed = false
+        if(this.balance.length == 10){
+            this.removeBalance(5)
+        }else{
+            this.addBalance(5)
+        }
+        for(let i = 0; i < 6; i++){
+            this.hand[i] = 0
+            document.querySelector(`.hand${i}`).innerHTML = ''
+        }
+
+        this.init()
     },
 }
