@@ -128,6 +128,15 @@ body {
     border: solid 5px #ff2121;
 }
 
+.card .cardName {
+    position: absolute;
+    margin: 0;
+    font-size: 25px;
+    width: 100px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
 .life {
     position: relative;
     align-self: flex-end;

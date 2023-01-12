@@ -1,7 +1,7 @@
 // const cards = require('cards')
 const game = {
     // id | Name | Life | Attack | Cost 
-    baseLevels: [[0, 'Squirrel', 1, 0, 0], [1, 'Wolf', 3, 2, 2], [2, 'Sapo', 2, 1, 1], [3, 'Mantis-god', 6, 4, 1]],
+    baseLevels: [[0, 'Squirrel', 1, 0, 0], [1, 'Wolf', 3, 2, 2], [2, 'Sapo', 2, 1, 1], [3, 'Mantis', 6, 4, 1]],
     initialDeck: [0, 1, 2],
     balance: [1, 1, 1, 1, 1],
     isGameEnd: false,
@@ -22,6 +22,8 @@ const game = {
         [[]]
     ],
 
+    level_cards: [],
+
     deck: [],
     hand: [0, 0, 0, 0, 0, 0],
     sleep: [],
@@ -34,6 +36,7 @@ const game = {
         this.board[row][col] = carta
         document.querySelector(`.slot${row}${col}`).innerHTML = `<div class="card">
                                                                     <img class="card-background" src="./img/carta.jpg" width="144px" height="256px" style="position: absolute;" alt="">
+                                                                    <p class="cardName">${carta.name}</p>
                                                                     <img class="heart" src="./img/life.png" width="50px" height="50px" style="position: absolute;" alt="">
                                                                     <img src="./img/claw.png" width="50px" height="50px" style="position: absolute;" alt="" class="claw">
                                                                     <div class="life">${carta.life}</div>
@@ -46,6 +49,7 @@ const game = {
         this.hand[position] = carta
         document.querySelector(`.hand${position}`).innerHTML = `<div class="card">
                                                                     <img class="card-background" src="./img/carta.jpg" width="144px" height="256px" style="position: absolute;" alt="">
+                                                                    <p class="cardName">${carta.name}</p>
                                                                     <img class="heart" src="./img/life.png" width="50px" height="50px" style="position: absolute;" alt="">
                                                                     <img src="./img/claw.png" width="50px" height="50px" style="position: absolute;" alt="" class="claw">
                                                                     <div class="life">${carta.life}</div>
@@ -84,6 +88,10 @@ const game = {
             const carta = new this.Card(this.baseLevels[this.initialDeck[i]])
             this.putCardOnHand(carta, i)
         }
+
+        this.levels[this.current_level].forEach(elem => {
+            this.level_cards.push(elem)
+        })
 
         this.fillBackline()
     },
@@ -300,17 +308,14 @@ const game = {
     },
 
     fillBackline: function(){
-        const level_cards = []
         const freeSlots = this.possibleSlotsBackline()
-        this.levels[this.current_level].forEach(elem => {
-            level_cards.push(elem)
-        })
+        
         if(this.levels[this.current_level].length == 0 || freeSlots.length == 0){return}
         const howManyCards = Math.floor(Math.random() * (freeSlots.length - 1) + 1)
         let cardsToPlay = []
         
         for(let i = 0; i < howManyCards; i++){
-            const card = new this.Card(this.baseLevels[level_cards.pop()])
+            const card = new this.Card(this.baseLevels[this.level_cards.pop()])
             cardsToPlay.push(card)
         }
         console.log(cardsToPlay)
