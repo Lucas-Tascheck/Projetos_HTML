@@ -1,0 +1,66 @@
+body {
+    background-color: #06213b;
+}
+
+.game {
+    position: absolute;
+    height: 1250px;
+    width: 1900px;
+    left: calc(50% - 950px);
+    color: white;
+    font-size: 60px;
+    text-align: center;
+}
+
+.player1, .player2 {
+    position: relative;
+    display: grid;
+    height: 500px;
+    width: 500px;
+    left: calc(50% - 250px);
+    margin-top: 50px;
+    background-color: #000000;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-radius: 25px;
+}
+
+.line {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    row-gap: 20px;
+    padding: 10px 15px;
+    margin-top: 8px;
+}
+
+.slot {
+    background-color: rgba(14, 14, 75, 0.75);
+    border-radius: 10px;
+    height: 136px;
+    width: 136px;
+}
+
+.diceSlot1, .diceSlot2 {
+    position: absolute;
+    display: grid;
+    width: 500px;
+    height: 330px;
+    background-color: black;
+    border-radius: 50px;
+}
+
+.diceSlot1 {
+    top: calc(100% - 550px);
+}
+
+.diceSlot2 {
+    left: calc(100% - 500px);
+    margin-top: 140px;
+}
+
+.diceSlot1 .dice, .diceSlot2 .dice {
+    margin-left: calc(50% - 68px);
+}
+
+p {
+    margin: 0;
+}
