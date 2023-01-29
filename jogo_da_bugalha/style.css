@@ -24,6 +24,14 @@ body {
     border-radius: 25px;
 }
 
+.player1 {
+    transform: rotate(180deg);
+}
+
+.player2 {
+    margin-top: 250px;
+}
+
 .line {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
@@ -49,7 +57,7 @@ body {
 }
 
 .diceSlot1 {
-    top: calc(100% - 550px);
+    top: calc(100% - 350px);
 }
 
 .diceSlot2 {
